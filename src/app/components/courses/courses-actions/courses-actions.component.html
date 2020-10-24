@@ -1,10 +1,4 @@
-<p>courses-actions works!</p>
-<form class="search-form" [formGroup]="searchForm">
-  <mat-form-field class="search-full-width" appearance="outline" color='accent'>
-    <mat-icon matSuffix>search</mat-icon>
-    <input placeholder="Поиск" matInput formControlName="coursesSearch">
-  </mat-form-field>
-  <button mat-button>
-    Search
-  </button>
-</form>
+<div class="action-container">
+  <app-search-courses></app-search-courses>
+  <app-add-course></app-add-course>
+</div>
