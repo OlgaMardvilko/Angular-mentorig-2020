@@ -1,0 +1,16 @@
+.authorization {
+  display: flex;
+}
+
+.auth-block {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+
+  p {
+    padding: 6px 0 0 6px;
+    font-size: 14px;
+    font-weight: 400;
+  }
+}

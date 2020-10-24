@@ -1,0 +1,13 @@
+@import "~src/app/app-variables";
+
+mat-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  background: $bg-dark-gray;
+
+  p {
+    font-size: 14px;
+    font-weight: 400;
+  }
+}

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-courses-actions',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CoursesActionsComponent implements OnInit {
 
-  constructor() { }
+  public searchForm: FormGroup;
+
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
+    this.searchForm = this.fb.group({
+      coursesSearch: ['']
+    });
   }
 
 }

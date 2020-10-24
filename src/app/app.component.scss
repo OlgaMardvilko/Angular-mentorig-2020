@@ -1,0 +1,17 @@
+@import "~src/app/app-variables";
+
+.wrapper {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  header,
+  footer {
+    flex-shrink: 0;
+  }
+
+  main {
+    flex-grow: 1;
+    background: $bg-light-gray;
+  }
+}
