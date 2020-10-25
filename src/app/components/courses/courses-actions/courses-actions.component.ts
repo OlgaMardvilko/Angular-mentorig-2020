@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-courses-actions',
@@ -8,14 +7,15 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 })
 export class CoursesActionsComponent implements OnInit {
 
-  public searchForm: FormGroup;
+  @Output() search = new EventEmitter();
 
-  constructor(private fb: FormBuilder) { }
+  constructor() { }
 
   ngOnInit(): void {
-    this.searchForm = this.fb.group({
-      coursesSearch: ['']
-    });
+  }
+
+  onSearch(searchValue: string): void {
+    this.search.emit(searchValue);
   }
 
 }

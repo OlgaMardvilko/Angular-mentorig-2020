@@ -12,4 +12,8 @@ export class AddCourseComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  addCourse(): void {
+    console.log('handler for future action ADD COURSE');
+  }
+
 }

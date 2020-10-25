@@ -4,7 +4,7 @@
     <input type="text" placeholder="Type to search" matInput formControlName="coursesSearch">
     <mat-icon matPrefix>search</mat-icon>
   </mat-form-field>
-  <button mat-button>
+  <button mat-button (click)="searchCourse()">
     Search
   </button>
 </form>

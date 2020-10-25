@@ -1,2 +1,2 @@
-<app-courses-actions></app-courses-actions>
-<app-courses-list></app-courses-list>
+<app-courses-actions (search)="onSearch($event)"></app-courses-actions>
+<app-courses-list [searchValue]="searchValue"></app-courses-list>

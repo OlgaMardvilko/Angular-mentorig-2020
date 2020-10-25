@@ -1,12 +1,14 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
-import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AppMaterialModule } from './app-material.module';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
-
+// modules
+import { AppRoutingModule } from './app-routing.module';
+import { AppMaterialModule } from './app-material.module';
+// pipes
+// import { TimePipe } from './pipes/time.pipe';
+// components
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -18,6 +20,7 @@ import { LogoComponent } from './components/header/logo/logo.component';
 import { UserAuthorizationComponent } from './components/header/user-authorization/user-authorization.component';
 import { SearchCoursesComponent } from './components/courses/courses-actions/search-courses/search-courses.component';
 import { AddCourseComponent } from './components/courses/courses-actions/add-course/add-course.component';
+import { CourseItemComponent } from './components/courses/course-item/course-item.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +34,8 @@ import { AddCourseComponent } from './components/courses/courses-actions/add-cou
     LogoComponent,
     UserAuthorizationComponent,
     SearchCoursesComponent,
-    AddCourseComponent
+    AddCourseComponent,
+    CourseItemComponent
   ],
   imports: [
     BrowserModule,
@@ -39,8 +43,12 @@ import { AddCourseComponent } from './components/courses/courses-actions/add-cou
     BrowserAnimationsModule,
     AppMaterialModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    // TimePipe
   ],
+  // exports: [
+  //   TimePipe
+  // ],
   providers: [],
   bootstrap: [AppComponent]
 })
