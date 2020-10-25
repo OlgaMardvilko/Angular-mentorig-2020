@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { CoursesFakeData, ICourse } from '../../../models/course.model';
+import { ICourse } from '../../../models/course.model';
 
 @Component({
   selector: 'app-courses-list',
@@ -10,18 +10,16 @@ import { CoursesFakeData, ICourse } from '../../../models/course.model';
 export class CoursesListComponent implements OnInit, OnChanges {
   public coursesList: ICourse[] = [];
 
-  @Input() searchValue: string;
+  @Input() courses: ICourse[];
 
   constructor() { }
 
   ngOnInit(): void {
-    this.coursesList = CoursesFakeData;
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes.searchValue) {
-      const searchValue = changes.searchValue.currentValue;
-      this.searchCourse(searchValue);
+    if (changes.courses) {
+      this.coursesList = changes.courses.currentValue;
     }
   }
 
@@ -30,12 +28,12 @@ export class CoursesListComponent implements OnInit, OnChanges {
   }
 
   onDeleteCourse(courseId: string): void {
+    console.log('course delete id', courseId);
     this.coursesList = [...this.coursesList].filter(course => course.id !== courseId);
   }
 
-  private searchCourse(value: string): void {
-    const coursesListSearch = [...this.coursesList].filter(course => course.title.includes(value));
-    this.coursesList = value ? coursesListSearch : this.coursesList;
+  loadMore(): void {
+    console.log('handler for LOAD MORE action');
   }
 
 }

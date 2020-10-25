@@ -6,7 +6,7 @@
       (deleteCourse)="onDeleteCourse($event)"
     ></app-course-item>
   </ng-container>
-  <button mat-button>
+  <button mat-button (click)="loadMore()">
     Load more
   </button>
 </section>
