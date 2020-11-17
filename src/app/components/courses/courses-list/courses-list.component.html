@@ -6,11 +6,11 @@
       (deleteCourse)="onDeleteCourse($event)"
     ></app-course-item>
   </ng-container>
-  <button mat-button (click)="loadMore()">
+  <button class="load-btn" mat-button (click)="loadMore()">
     Load more
   </button>
 </section>
 
 <section *ngIf="!coursesList.length">
-  <p>Not courses find</p>
+  <p class="not-find">Not courses find</p>
 </section>
