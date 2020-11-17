@@ -1,3 +1,2 @@
-<p>courses works!</p>
-<app-courses-actions></app-courses-actions>
-<app-courses-list></app-courses-list>
+<app-courses-actions (search)="onSearch($event)"></app-courses-actions>
+<app-courses-list [courses]="courses"></app-courses-list>

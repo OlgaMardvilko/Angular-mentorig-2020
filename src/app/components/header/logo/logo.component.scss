@@ -1,0 +1,19 @@
+.logo-container {
+  display: flex;
+  align-items: center;
+
+  .logo {
+    width: 36px;
+    height: 36px;
+    font-size: 36px;
+    background: linear-gradient(to bottom, #6eb6bd 0%,#bacd67 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .logo-text {
+    padding: 0 0 0 20px;
+    text-transform: uppercase;
+  }
+}

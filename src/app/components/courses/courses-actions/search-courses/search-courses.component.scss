@@ -1,0 +1,34 @@
+@import "~src/app/app-variables";
+
+.search-form {
+  display: flex;
+
+  mat-form-field {
+    width: 40vw;
+  }
+
+  mat-label,
+  mat-icon {
+    color: $gray;
+  }
+
+  mat-icon {
+    transform: rotate(80deg);
+  }
+
+  button {
+    height: 60px;
+    margin-left: 20px;
+    padding: 0 30px;
+    color: $white;
+    font-size: 18px;
+    background-color: $secondary-color;
+    letter-spacing: 0.4px;
+  }
+}
+
+::ng-deep mat-form-field {
+  .mat-form-field-outline {
+    background: white;
+  }
+}

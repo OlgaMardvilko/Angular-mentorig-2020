@@ -1,0 +1,10 @@
+<form class="search-form" [formGroup]="searchForm">
+  <mat-form-field class="search-full-width" appearance="outline" color='accent'>
+    <mat-label>Text to search</mat-label>
+    <input type="text" placeholder="Type to search" matInput formControlName="coursesSearch">
+    <mat-icon matPrefix>search</mat-icon>
+  </mat-form-field>
+  <button mat-button (click)="searchCourse()">
+    Search
+  </button>
+</form>

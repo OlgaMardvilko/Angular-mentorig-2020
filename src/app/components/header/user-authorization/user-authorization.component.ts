@@ -12,4 +12,12 @@ export class UserAuthorizationComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  logIn(): void {
+    console.log('handler for future action LOGIN');
+  }
+
+  logOut(): void {
+    console.log('handler for future action LOGOUT');
+  }
+
 }

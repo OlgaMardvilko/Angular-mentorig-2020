@@ -1,0 +1,12 @@
+@import "~src/app/app-variables";
+
+.courses-list {
+  button {
+    width: 100%;
+    padding: 10px;
+    color: $light-blue;
+    text-decoration: underline;
+    text-transform: uppercase;
+    background: $white;
+  }
+}
