@@ -10,7 +10,7 @@ export class SearchCoursesComponent implements OnInit {
 
   public searchForm: FormGroup;
 
-  @Output() search = new EventEmitter();
+  @Output() search = new EventEmitter<string>();
 
   constructor(private fb: FormBuilder) { }
 
