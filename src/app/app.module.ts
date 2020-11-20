@@ -6,6 +6,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 // modules
 import { AppRoutingModule } from './app-routing.module';
 import { AppMaterialModule } from './app-material.module';
+// directives
+import { BorderColorDirective } from '../app/directives/border-color.directive';
 // pipes
 // import { TimePipe } from './pipes/time.pipe';
 // components
@@ -35,7 +37,8 @@ import { CourseItemComponent } from './components/courses/course-item/course-ite
     UserAuthorizationComponent,
     SearchCoursesComponent,
     AddCourseComponent,
-    CourseItemComponent
+    CourseItemComponent,
+    BorderColorDirective,
   ],
   imports: [
     BrowserModule,
@@ -46,9 +49,10 @@ import { CourseItemComponent } from './components/courses/course-item/course-ite
     ReactiveFormsModule,
     // TimePipe
   ],
-  // exports: [
-  //   TimePipe
-  // ],
+  exports: [
+    // BorderColorDirective
+    // TimePipe
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })

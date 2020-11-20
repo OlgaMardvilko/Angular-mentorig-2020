@@ -33,7 +33,12 @@
       padding: 0 20px;
 
       p {
-        padding-left: 10px;
+        margin-left: 10px;
+
+        &.date {
+          border-bottom: 3px solid;
+          border-bottom-color: transparent;
+        }
       }
     }
 

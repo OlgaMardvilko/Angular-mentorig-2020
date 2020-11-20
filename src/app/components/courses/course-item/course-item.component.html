@@ -8,7 +8,9 @@
       </div>
       <div class="course-info-item">
         <mat-icon>calendar_today</mat-icon>
-        <p>{{courseItem.creationDate | date:'d MMM, y'}}</p>
+        <p [appBorderColor]="courseItem.creationDate" class="date">
+          <span>{{courseItem.creationDate | date:'d MMM, y'}}</span>
+        </p>
       </div>
     </div>
   </div>
