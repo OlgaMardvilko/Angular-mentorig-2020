@@ -1,5 +1,5 @@
 <section class="courses-list" *ngIf="coursesList.length">
-  <ng-container *ngFor="let course of coursesList">
+  <ng-container *ngFor="let course of coursesList | orderBy: 'creationDate'">
     <app-course-item
       [course]="course"
       (editCourse)="onEditCourse($event)"

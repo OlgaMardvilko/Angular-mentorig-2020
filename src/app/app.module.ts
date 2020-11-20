@@ -9,7 +9,8 @@ import { AppMaterialModule } from './app-material.module';
 // directives
 import { BorderColorDirective } from '../app/directives/border-color.directive';
 // pipes
-// import { TimePipe } from './pipes/time.pipe';
+import { TimePipe } from './pipes/time.pipe';
+import { OrderByPipe } from './pipes/order-by.pipe';
 // components
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -39,6 +40,8 @@ import { CourseItemComponent } from './components/courses/course-item/course-ite
     AddCourseComponent,
     CourseItemComponent,
     BorderColorDirective,
+    TimePipe,
+    OrderByPipe
   ],
   imports: [
     BrowserModule,
@@ -47,11 +50,6 @@ import { CourseItemComponent } from './components/courses/course-item/course-ite
     AppMaterialModule,
     FormsModule,
     ReactiveFormsModule,
-    // TimePipe
-  ],
-  exports: [
-    // BorderColorDirective
-    // TimePipe
   ],
   providers: [],
   bootstrap: [AppComponent]

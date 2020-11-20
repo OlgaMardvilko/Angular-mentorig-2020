@@ -31,7 +31,7 @@ export const CoursesFakeData = [
     id: '1',
     title: 'Video course 1',
     creationDate: '2020-11-15T03:24:00',
-    duration: 120,
+    duration: 124,
     topRated: true,
     description: `Some course descriptions. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                  Nunc eu odio nunc. Mauris neque neque, dignissim ac accumsan quis, sodales nec metus.
@@ -61,7 +61,7 @@ export const CoursesFakeData = [
     id: '3',
     title: 'Video course 3',
     creationDate: '2020-08-17T03:24:00',
-    duration: 110,
+    duration: 45,
     description: `Some course descriptions. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                  Nunc eu odio nunc. Mauris neque neque, dignissim ac accumsan quis, sodales nec metus.
                  Donec diam est, dignissim eu ante at, luctus mollis augue. Maecenas condimentum mollis
