@@ -12,6 +12,10 @@ export class CourseItemComponent implements OnInit, OnChanges {
   @Output() editCourse = new EventEmitter();
   @Output() deleteCourse = new EventEmitter();
 
+  get isStarRating(): boolean {
+    return this.courseItem.topRated;
+  }
+
   public courseItem: ICourse = null;
 
   constructor() { }

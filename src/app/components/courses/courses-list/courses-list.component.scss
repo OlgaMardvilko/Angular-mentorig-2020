@@ -10,3 +10,16 @@
     background: $white;
   }
 }
+
+.no-data {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+  padding: 20px;
+  background: $white;
+
+  p {
+    text-transform: uppercase;
+  }
+}

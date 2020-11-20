@@ -1,6 +1,6 @@
 <div class="course">
   <div class="course-col">
-    <h2 class="course-title">{{courseItem.title}}</h2>
+    <h2 class="course-title" [ngClass]="isStarRating ? 'star-rating' : ''">{{courseItem.title | uppercase}}</h2>
     <div class="course-info">
       <div class="course-info-item">
         <mat-icon>schedule</mat-icon>
