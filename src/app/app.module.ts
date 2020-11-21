@@ -11,6 +11,7 @@ import { BorderColorDirective } from '../app/directives/border-color.directive';
 // pipes
 import { TimePipe } from './pipes/time.pipe';
 import { OrderByPipe } from './pipes/order-by.pipe';
+import { FilterPipe } from './pipes/filter.pipe';
 // components
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -41,7 +42,7 @@ import { CourseItemComponent } from './components/courses/course-item/course-ite
     CourseItemComponent,
     BorderColorDirective,
     TimePipe,
-    OrderByPipe
+    OrderByPipe,
   ],
   imports: [
     BrowserModule,
@@ -51,7 +52,7 @@ import { CourseItemComponent } from './components/courses/course-item/course-ite
     FormsModule,
     ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [FilterPipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
