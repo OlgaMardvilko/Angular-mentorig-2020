@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ICourse, CoursesFakeData } from 'src/app/models/course.model';
+import { FilterPipe } from '../../pipes/filter.pipe';
 
 @Component({
   selector: 'app-courses',
@@ -11,7 +12,7 @@ export class CoursesComponent implements OnInit {
   public courses: ICourse[] = [];
   public searchValue: string;
 
-  constructor() { }
+  constructor(private filterPipe: FilterPipe) { }
 
   ngOnInit(): void {
     this.courses = CoursesFakeData;
@@ -19,7 +20,8 @@ export class CoursesComponent implements OnInit {
 
   onSearch(searchValue: string): void {
     this.courses = CoursesFakeData;
-    const coursesListSearch = [...this.courses].filter(course => course.title.includes(searchValue));
+    const filterByField = 'title';
+    const coursesListSearch = this.filterPipe.transform([...this.courses], filterByField, searchValue);
     this.courses = searchValue ? coursesListSearch : this.courses;
   }
 
