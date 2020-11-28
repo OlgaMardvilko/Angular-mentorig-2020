@@ -7,7 +7,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 })
 export class CoursesActionsComponent implements OnInit {
 
-  @Output() search = new EventEmitter();
+  @Output() search = new EventEmitter<string>();
 
   constructor() { }
 
