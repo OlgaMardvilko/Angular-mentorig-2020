@@ -25,7 +25,7 @@ import { UserAuthorizationComponent } from './components/header/user-authorizati
 import { SearchCoursesComponent } from './components/courses/courses-actions/search-courses/search-courses.component';
 import { AddCourseComponent } from './components/courses/courses-actions/add-course/add-course.component';
 import { CourseItemComponent } from './components/courses/course-item/course-item.component';
-
+import { ConfirmDeleteDialogComponent } from './components/courses/confirm-delete-dialog/confirm-delete-dialog.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,6 +40,7 @@ import { CourseItemComponent } from './components/courses/course-item/course-ite
     SearchCoursesComponent,
     AddCourseComponent,
     CourseItemComponent,
+    ConfirmDeleteDialogComponent,
     BorderColorDirective,
     TimePipe,
     OrderByPipe,
@@ -53,6 +54,7 @@ import { CourseItemComponent } from './components/courses/course-item/course-ite
     ReactiveFormsModule,
   ],
   providers: [FilterPipe],
+  entryComponents: [ConfirmDeleteDialogComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
