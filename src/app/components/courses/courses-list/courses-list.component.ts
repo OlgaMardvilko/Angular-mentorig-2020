@@ -1,6 +1,9 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges, DoCheck,
   AfterContentInit, AfterContentChecked, AfterViewInit, AfterViewChecked, OnDestroy } from '@angular/core';
 import { ICourse } from '../../../models/course.model';
+import { CoursesService } from 'src/app/services/courses.service';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 // tslint:disable-next-line: no-conflicting-lifecycle
 @Component({
@@ -11,11 +14,13 @@ import { ICourse } from '../../../models/course.model';
 
 export class CoursesListComponent implements OnInit, OnChanges,
   DoCheck, AfterContentInit, AfterContentChecked, AfterViewInit, AfterViewChecked, OnDestroy {
+
   public coursesList: ICourse[] = [];
+  private destroy$ = new Subject();
 
   @Input() courses: ICourse[];
 
-  constructor() { }
+  constructor(private coursesService: CoursesService) { }
 
   ngOnChanges(changes: SimpleChanges): void {
     console.log('ngOnChanges Lifecycle hook');
@@ -49,7 +54,8 @@ export class CoursesListComponent implements OnInit, OnChanges,
   }
 
   ngOnDestroy(): void {
-    console.log('ngOnDestroy Lifecycle hook');
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 
   onEditCourse(courseId: string): void {
@@ -57,8 +63,10 @@ export class CoursesListComponent implements OnInit, OnChanges,
   }
 
   onDeleteCourse(courseId: string): void {
-    console.log('course delete id', courseId);
-    this.coursesList = [...this.coursesList].filter(course => course.id !== courseId);
+    this.coursesService
+      .removeCourse(courseId)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(res => this.coursesList = res);
   }
 
   loadMore(): void {

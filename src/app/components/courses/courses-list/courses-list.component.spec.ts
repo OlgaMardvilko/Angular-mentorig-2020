@@ -109,12 +109,12 @@ describe('#CourseItemComponent when tested directly', () => {
     expect(component.coursesList).toEqual(expectCoursesList);
   });
 
-  it('should render "Not courses find" when not data coursesList', () => {
+  it('should render valid value when not data coursesList', () => {
     component.coursesList = [createMockCoursesData(null)];
     component.coursesList.length = 0;
     fixture.detectChanges();
     const compiled = fixture.nativeElement;
 
-    expect(compiled.querySelector('.not-find').textContent).toContain('Not courses find');
+    expect(compiled.querySelector('.not-find').textContent).toContain('No data, feel free to add new course');
   });
 });
