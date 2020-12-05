@@ -6,6 +6,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 // modules
 import { AppRoutingModule } from './app-routing.module';
 import { AppMaterialModule } from './app-material.module';
+import { LoginPageModule } from './modules/login-page/login-page.module';
 // directives
 import { BorderColorDirective } from '../app/directives/border-color.directive';
 // pipes
@@ -25,6 +26,7 @@ import { UserAuthorizationComponent } from './components/header/user-authorizati
 import { SearchCoursesComponent } from './components/courses/courses-actions/search-courses/search-courses.component';
 import { AddCourseComponent } from './components/courses/courses-actions/add-course/add-course.component';
 import { CourseItemComponent } from './components/courses/course-item/course-item.component';
+import { ConfirmDeleteDialogComponent } from './components/courses/confirm-delete-dialog/confirm-delete-dialog.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +42,7 @@ import { CourseItemComponent } from './components/courses/course-item/course-ite
     SearchCoursesComponent,
     AddCourseComponent,
     CourseItemComponent,
+    ConfirmDeleteDialogComponent,
     BorderColorDirective,
     TimePipe,
     OrderByPipe,
@@ -51,8 +54,10 @@ import { CourseItemComponent } from './components/courses/course-item/course-ite
     AppMaterialModule,
     FormsModule,
     ReactiveFormsModule,
+    LoginPageModule
   ],
   providers: [FilterPipe],
+  entryComponents: [ConfirmDeleteDialogComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

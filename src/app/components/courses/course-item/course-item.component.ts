@@ -1,5 +1,7 @@
 import { Component, OnInit, OnChanges, Input, SimpleChanges, Output, EventEmitter } from '@angular/core';
 import { ICourse } from 'src/app/models/course.model';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmDeleteDialogComponent } from '../confirm-delete-dialog/confirm-delete-dialog.component';
 
 @Component({
   selector: 'app-course-item',
@@ -18,7 +20,7 @@ export class CourseItemComponent implements OnInit, OnChanges {
 
   public courseItem: ICourse = null;
 
-  constructor() { }
+  constructor(public dialog: MatDialog) { }
 
   ngOnInit(): void {
   }
@@ -35,7 +37,17 @@ export class CourseItemComponent implements OnInit, OnChanges {
   }
 
   onDeleteCourse(courseId: string): void {
-    this.deleteCourse.emit(courseId);
+    this.confirmDelete(courseId);
+  }
+
+  confirmDelete(courseId: string): void {
+    const dialogRef = this.dialog.open(ConfirmDeleteDialogComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.deleteCourse.emit(courseId);
+      }
+    });
   }
 
 }

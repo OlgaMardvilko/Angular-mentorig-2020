@@ -1,0 +1,25 @@
+@import "~src/app/app-variables";
+
+h2 {
+  text-align: center;
+}
+
+p {
+  padding: 20px;
+  font-size: 18px;
+}
+
+.dialog-btn {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.confirm-btn {
+  font-size: 18px;
+  background: $red;
+}
+
+.cancel-btn {
+  font-size: 18px;
+  background: $medium-gray;
+}
