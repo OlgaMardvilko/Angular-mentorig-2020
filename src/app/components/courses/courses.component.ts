@@ -38,6 +38,13 @@ export class CoursesComponent implements OnInit, OnDestroy {
     this.courses = searchValue ? coursesListSearch : initialCourses;
   }
 
+  onDeleteCourse(courseId: string): void {
+    this.coursesService
+      .removeCourse(courseId)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(res => this.courses = res);
+  }
+
   private getCourses(): void {
     this.coursesService
       .getCourses()
