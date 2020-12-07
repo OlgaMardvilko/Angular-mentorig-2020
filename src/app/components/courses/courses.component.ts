@@ -4,6 +4,7 @@ import { FilterPipe } from '../../pipes/filter.pipe';
 import { CoursesService } from 'src/app/services/courses.service';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-courses',
@@ -18,11 +19,18 @@ export class CoursesComponent implements OnInit, OnDestroy {
 
   constructor(
     private filterPipe: FilterPipe,
-    private coursesService: CoursesService
+    private coursesService: CoursesService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
     this.getCourses();
+
+    this.coursesService
+      .addCourse$
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(res => this.getCourses());
   }
 
   ngOnDestroy(): void {
@@ -36,6 +44,12 @@ export class CoursesComponent implements OnInit, OnDestroy {
     const filterByField = 'title';
     const coursesListSearch = this.filterPipe.transform([...this.courses], filterByField, searchValue);
     this.courses = searchValue ? coursesListSearch : initialCourses;
+  }
+
+  onAddCourse(isAddCourse: boolean): void {
+    if (isAddCourse) {
+      this.router.navigate(['add'], {relativeTo: this.activatedRoute});
+    }
   }
 
   onDeleteCourse(courseId: string): void {

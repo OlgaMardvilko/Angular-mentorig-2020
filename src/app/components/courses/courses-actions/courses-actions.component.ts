@@ -8,6 +8,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 export class CoursesActionsComponent implements OnInit {
 
   @Output() search = new EventEmitter<string>();
+  @Output() addCourse = new EventEmitter<boolean>();
 
   constructor() { }
 
@@ -16,6 +17,10 @@ export class CoursesActionsComponent implements OnInit {
 
   onSearch(searchValue: string): void {
     this.search.emit(searchValue);
+  }
+
+  onAddCourse(isAddCourse: boolean): void {
+    this.addCourse.emit(isAddCourse);
   }
 
 }

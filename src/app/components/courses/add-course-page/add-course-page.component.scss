@@ -1,0 +1,13 @@
+.add-course-panel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 60%;
+  margin: 0 auto;
+  padding: 30px 40px;
+
+  .full-width {
+    width: 100%;
+  }
+}

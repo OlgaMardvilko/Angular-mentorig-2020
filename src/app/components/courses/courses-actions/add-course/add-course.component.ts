@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-add-course',
@@ -7,12 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddCourseComponent implements OnInit {
 
+  @Output() addCourse = new EventEmitter<boolean>();
+
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  addCourse(): void {
+  addCourseClick(): void {
+    this.addCourse.emit(true);
     console.log('handler for future action ADD COURSE');
   }
 
