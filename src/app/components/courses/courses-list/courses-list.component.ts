@@ -14,6 +14,7 @@ export class CoursesListComponent implements OnChanges {
 
   @Input() courses: ICourse[];
   @Output() deleteCourse = new EventEmitter<string>();
+  @Output() editCourse = new EventEmitter<string>();
 
   constructor() { }
 
@@ -25,6 +26,7 @@ export class CoursesListComponent implements OnChanges {
 
   onEditCourse(courseId: string): void {
     console.log('edit course action handler, for future', courseId);
+    this.editCourse.emit(courseId);
   }
 
   onDeleteCourse(courseId: string): void {

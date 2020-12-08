@@ -31,6 +31,11 @@ export class CoursesComponent implements OnInit, OnDestroy {
       .addCourse$
       .pipe(takeUntil(this.destroy$))
       .subscribe(res => this.getCourses());
+
+    this.coursesService
+      .updateCourse$
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(res => this.getCourses());
   }
 
   ngOnDestroy(): void {
@@ -49,6 +54,12 @@ export class CoursesComponent implements OnInit, OnDestroy {
   onAddCourse(isAddCourse: boolean): void {
     if (isAddCourse) {
       this.router.navigate(['add'], {relativeTo: this.activatedRoute});
+    }
+  }
+
+  onEditCourse(movieId: string): void {
+    if (movieId) {
+      this.router.navigate(['edit', movieId], {relativeTo: this.activatedRoute});
     }
   }
 

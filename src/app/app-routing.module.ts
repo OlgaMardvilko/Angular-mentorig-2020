@@ -6,7 +6,8 @@ import { AddCoursePageComponent } from './components/courses/add-course-page/add
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: '/courses' },
   { path: 'courses', component: CoursesComponent },
-  { path: 'courses/add', pathMatch: 'full', component: AddCoursePageComponent }
+  { path: 'courses/add', pathMatch: 'full', component: AddCoursePageComponent },
+  { path: 'courses/edit/:id', pathMatch: 'full', component: AddCoursePageComponent }
 ];
 
 @NgModule({

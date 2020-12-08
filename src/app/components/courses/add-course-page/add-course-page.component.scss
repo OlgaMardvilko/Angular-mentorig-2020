@@ -1,3 +1,5 @@
+@import "~src/app/app-variables";
+
 .add-course-panel {
   display: flex;
   align-items: center;
@@ -9,5 +11,28 @@
 
   .full-width {
     width: 100%;
+  }
+
+  .action-btn {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    button {
+      height: 50px;
+      width: 100px;
+      font-size: 18px;
+      letter-spacing: 0.4px;
+    }
+
+    .reset-course-btn {
+      background-color: $gray;
+      margin-right: 20px;
+    }
+
+    .add-course-btn {
+      color: $white;
+      background-color: $secondary-color;
+    }
   }
 }

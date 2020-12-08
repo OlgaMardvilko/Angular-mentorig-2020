@@ -1,5 +1,5 @@
 <mat-card class="add-course-panel">
-  <h2>Add course</h2>
+  <h2>{{formAction}}</h2>
   <form class="login-form" [formGroup]="addCourseForm">
     <mat-form-field class="full-width" appearance="outline" color='accent'>
       <mat-label>Title:</mat-label>
@@ -21,8 +21,9 @@
       <mat-label>Authors:</mat-label>
       <input type="text" placeholder="Start typing" matInput formControlName="authors">
     </mat-form-field>
-    <button class="add-course-btn" mat-button (click)="addCourse()" color="primary">
-      Add course
-    </button>
+    <div class="action-btn">
+      <button class="reset-course-btn" mat-button (click)="onCancel()"> Cancel </button>
+      <button class="add-course-btn" mat-button (click)="addCourse()"> Save </button>
+    </div>
   </form>
 </mat-card>

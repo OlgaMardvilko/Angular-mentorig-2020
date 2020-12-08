@@ -4,5 +4,6 @@
 </app-courses-actions>
 <app-courses-list
   [courses]="courses"
+  (editCourse)="onEditCourse($event)"
   (deleteCourse)="onDeleteCourse($event)">
 </app-courses-list>
