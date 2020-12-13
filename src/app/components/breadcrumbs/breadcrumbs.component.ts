@@ -27,8 +27,10 @@ export class BreadcrumbsComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.paramMap
-      .pipe(switchMap(params => params.getAll('id')))
-      .pipe(takeUntil(this.destroy$))
+      .pipe(
+        switchMap(params => params.getAll('id')),
+        takeUntil(this.destroy$)
+      )
       .subscribe(courseId => {
         console.log('courseId', courseId);
         this.getCourseData(courseId);

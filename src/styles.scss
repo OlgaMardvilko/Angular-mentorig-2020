@@ -27,8 +27,12 @@ body {
     flex-shrink: 0;
   }
 
-  main {
+  .main-content {
     flex-grow: 1;
+    background: $bg-light-gray;
+  }
+
+  main {
     padding: 1.5% 5% 3%;
     background: $bg-light-gray;
   }
