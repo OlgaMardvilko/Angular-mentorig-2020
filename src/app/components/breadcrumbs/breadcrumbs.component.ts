@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Subject } from 'rxjs';
+import { switchMap, takeUntil } from 'rxjs/operators';
+import { ICourse } from 'src/app/models/course.model';
+import { CoursesService } from 'src/app/services/courses.service';
 
 @Component({
   selector: 'app-breadcrumbs',
@@ -7,9 +12,34 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BreadcrumbsComponent implements OnInit {
 
-  constructor() { }
+  get courseName(): string {
+    console.log('this.courseData', this.courseData);
+    return this.courseData && this.courseData.title ? this.courseData.title : '';
+  }
+
+  public courseData: ICourse;
+  private destroy$ = new Subject();
+
+  constructor(
+    private coursesService: CoursesService,
+    private route: ActivatedRoute
+  ) { }
 
   ngOnInit(): void {
+    this.route.paramMap
+      .pipe(switchMap(params => params.getAll('id')))
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(courseId => {
+        console.log('courseId', courseId);
+        this.getCourseData(courseId);
+      });
+  }
+
+  private getCourseData(courseId: string): void {
+    this.coursesService
+      .getCourseById(courseId)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(res => this.courseData = res);
   }
 
 }

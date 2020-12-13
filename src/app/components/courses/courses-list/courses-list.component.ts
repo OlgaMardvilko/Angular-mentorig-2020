@@ -25,7 +25,6 @@ export class CoursesListComponent implements OnChanges {
   }
 
   onEditCourse(courseId: string): void {
-    console.log('edit course action handler, for future', courseId);
     this.editCourse.emit(courseId);
   }
 

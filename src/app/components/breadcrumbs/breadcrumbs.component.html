@@ -1,3 +1,5 @@
 <mat-toolbar>
-  <p>Courses</p>
+  <p>Courses
+    <span *ngIf="courseName">/ {{courseName}}</span>
+  </p>
 </mat-toolbar>

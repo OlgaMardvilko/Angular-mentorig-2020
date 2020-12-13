@@ -1,5 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import '@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import "~src/app/app-variables";
 
 html, body {
   height: 100%;
@@ -13,6 +14,23 @@ body {
     p {
       margin: 0;
     }
+  }
+}
+
+.wrapper {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  header,
+  footer {
+    flex-shrink: 0;
+  }
+
+  main {
+    flex-grow: 1;
+    padding: 1.5% 5% 3%;
+    background: $bg-light-gray;
   }
 }
 

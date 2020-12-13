@@ -2,13 +2,13 @@
   <header>
     <app-header></app-header>
   </header>
-  <app-breadcrumbs *ngIf="isAuthenticated"></app-breadcrumbs>
-  <main *ngIf="!isAuthenticated">
+  <!-- <app-breadcrumbs></app-breadcrumbs> -->
+  <!-- <main *ngIf="!isAuthenticated">
     <app-login-page></app-login-page>
-  </main>
-  <main *ngIf="isAuthenticated">
+  </main> -->
+  <!-- <main> -->
     <router-outlet></router-outlet>
-  </main>
+  <!-- </main> -->
   <footer>
     <app-footer></app-footer>
   </footer>

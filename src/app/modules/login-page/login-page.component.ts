@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -17,7 +18,8 @@ export class LoginPageComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -28,7 +30,7 @@ export class LoginPageComponent implements OnInit {
     const loginData = this.loginForm.value;
     const token = 'Successful Login';
     this.authService.login(loginData, token);
-    console.log('logged in successfully');
+    this.router.navigate(['/courses']);
   }
 
   private createLoginForm(): void {
