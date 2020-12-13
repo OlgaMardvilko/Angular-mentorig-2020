@@ -13,7 +13,6 @@ import { CoursesService } from 'src/app/services/courses.service';
 export class BreadcrumbsComponent implements OnInit {
 
   get courseName(): string {
-    console.log('this.courseData', this.courseData);
     return this.courseData && this.courseData.title ? this.courseData.title : '';
   }
 
@@ -31,10 +30,7 @@ export class BreadcrumbsComponent implements OnInit {
         switchMap(params => params.getAll('id')),
         takeUntil(this.destroy$)
       )
-      .subscribe(courseId => {
-        console.log('courseId', courseId);
-        this.getCourseData(courseId);
-      });
+      .subscribe(courseId => this.getCourseData(courseId));
   }
 
   private getCourseData(courseId: string): void {
