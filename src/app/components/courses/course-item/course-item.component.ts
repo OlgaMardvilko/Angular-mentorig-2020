@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges, Input, SimpleChanges, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, OnChanges, Input, SimpleChanges, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 import { ICourse } from 'src/app/models/course.model';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDeleteDialogComponent } from '../confirm-delete-dialog/confirm-delete-dialog.component';
@@ -6,7 +6,8 @@ import { ConfirmDeleteDialogComponent } from '../confirm-delete-dialog/confirm-d
 @Component({
   selector: 'app-course-item',
   templateUrl: './course-item.component.html',
-  styleUrls: ['./course-item.component.scss']
+  styleUrls: ['./course-item.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CourseItemComponent implements OnInit, OnChanges {
 
@@ -28,7 +29,6 @@ export class CourseItemComponent implements OnInit, OnChanges {
   ngOnChanges(simpleChanges: SimpleChanges): void {
     if (simpleChanges.course) {
       this.courseItem = simpleChanges.course.currentValue;
-      console.log('this.courseItem onChanges', this.courseItem);
     }
   }
 

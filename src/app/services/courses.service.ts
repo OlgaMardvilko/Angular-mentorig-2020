@@ -32,7 +32,7 @@ export class CoursesService {
 
   updateCourse(course: ICourse): Observable<ICourse[]> {
     const index = this.courses.findIndex(item => item.id === course.id);
-    this.courses = [...this.courses].splice(index, 1, course);
+    this.courses.splice(index, 1, course);
     return(of(this.courses));
   }
 
