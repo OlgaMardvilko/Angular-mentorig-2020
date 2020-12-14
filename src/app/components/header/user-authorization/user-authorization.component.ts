@@ -18,13 +18,12 @@ export class UserAuthorizationComponent implements OnInit {
   }
 
   logIn(): void {
-    console.log('handler for future action LOGIN');
-    this.router.navigate(['/login']);
+    this.router.navigate(['auth/login']);
   }
 
   logOut(): void {
     this.authService.logout();
-    console.log('handler for future action LOGOUT');
+    this.router.navigate(['auth/login']);
   }
 
 }

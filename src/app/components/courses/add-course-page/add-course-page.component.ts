@@ -31,8 +31,10 @@ export class AddCoursePageComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.route.paramMap
-      .pipe(switchMap(params => params.getAll('id')))
-      .pipe(takeUntil(this.destroy$))
+      .pipe(
+        switchMap(params => params.getAll('id')),
+        takeUntil(this.destroy$)
+      )
       .subscribe(data => {
         this.courseId = data;
         this.getCourseData(this.courseId);

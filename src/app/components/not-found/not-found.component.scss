@@ -1,0 +1,19 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: column;
+  min-height: 50vh;
+  max-height: 90vh;
+  padding: 40px;
+  font-size: 32px;
+  line-height: 1.4;
+}
+
+.text {
+  background: linear-gradient(to bottom, #6eb6bd 0%,#bacd67 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 70px;
+}

@@ -28,6 +28,7 @@ import { AddCourseComponent } from './components/courses/courses-actions/add-cou
 import { CourseItemComponent } from './components/courses/course-item/course-item.component';
 import { ConfirmDeleteDialogComponent } from './components/courses/confirm-delete-dialog/confirm-delete-dialog.component';
 import { AddCoursePageComponent } from './components/courses/add-course-page/add-course-page.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,6 +45,7 @@ import { AddCoursePageComponent } from './components/courses/add-course-page/add
     CourseItemComponent,
     ConfirmDeleteDialogComponent,
     AddCoursePageComponent,
+    NotFoundComponent,
     BorderColorDirective,
     TimePipe,
     OrderByPipe,

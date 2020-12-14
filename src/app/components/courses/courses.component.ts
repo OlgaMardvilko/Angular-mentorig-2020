@@ -53,13 +53,13 @@ export class CoursesComponent implements OnInit, OnDestroy {
 
   onAddCourse(isAddCourse: boolean): void {
     if (isAddCourse) {
-      this.router.navigate(['add'], {relativeTo: this.activatedRoute});
+      this.router.navigate(['new'], {relativeTo: this.activatedRoute});
     }
   }
 
   onEditCourse(movieId: string): void {
     if (movieId) {
-      this.router.navigate(['edit', movieId], {relativeTo: this.activatedRoute});
+      this.router.navigate(['courses', movieId]);
     }
   }
 
