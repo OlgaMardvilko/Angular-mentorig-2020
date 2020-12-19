@@ -15,6 +15,7 @@ export class UserAuthorizationComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.getUserInfo();
   }
 
   logIn(): void {
@@ -24,6 +25,11 @@ export class UserAuthorizationComponent implements OnInit {
   logOut(): void {
     this.authService.logout();
     this.router.navigate(['auth/login']);
+  }
+
+  getUserInfo(): void {
+    this.authService.getUserInfo()
+      .subscribe(user => console.log('user', user));
   }
 
 }

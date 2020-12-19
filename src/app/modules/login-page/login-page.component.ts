@@ -29,13 +29,14 @@ export class LoginPageComponent implements OnInit {
   login(): void {
     const loginData = this.loginForm.value;
     const token = 'Successful Login';
-    this.authService.login(loginData, token);
+    this.authService.login(loginData)
+      .subscribe(res => console.log('res login', res));
     this.router.navigate(['/courses']);
   }
 
   private createLoginForm(): void {
     this.loginForm = this.fb.group({
-      email: [''],
+      login: [''],
       password: ['']
     });
   }

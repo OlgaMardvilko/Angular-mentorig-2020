@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './helpers/auth.interceptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -52,6 +54,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     AppMaterialModule,
@@ -59,7 +62,10 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
     ReactiveFormsModule,
     LoginPageModule
   ],
-  providers: [FilterPipe],
+  providers: [
+    FilterPipe,
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+  ],
   entryComponents: [ConfirmDeleteDialogComponent],
   bootstrap: [AppComponent]
 })
