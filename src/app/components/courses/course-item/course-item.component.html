@@ -1,15 +1,15 @@
 <div class="course">
   <div class="course-col">
-    <h2 class="course-title" [ngClass]="isStarRating ? 'star-rating' : ''">{{courseItem.title | uppercase}}</h2>
+    <h2 class="course-title" [ngClass]="isStarRating ? 'star-rating' : ''">{{courseItem.name | uppercase}}</h2>
     <div class="course-info">
       <div class="course-info-item">
         <mat-icon>schedule</mat-icon>
-        <p>{{courseItem.duration | time}}</p>
+        <p>{{courseItem.length | time}}</p>
       </div>
       <div class="course-info-item">
         <mat-icon>calendar_today</mat-icon>
         <p [appBorderColor]="courseItem.creationDate" class="date">
-          <span>{{courseItem.creationDate | date:'d MMM, y'}}</span>
+          <span>{{courseItem.date | date:'d MMM, y'}}</span>
         </p>
       </div>
     </div>

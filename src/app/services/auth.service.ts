@@ -46,11 +46,6 @@ export class AuthService {
                     .pipe(tap(({ token }) => this.authToken = token));
   }
 
-  setLoginToLocalStorage(userData: User, token: string): void {
-    this.user = userData;
-    this.authToken = token;
-  }
-
   logout(): void {
     localStorage.removeItem(L_STORAGE_AUTH_KEY);
     localStorage.removeItem(L_STORAGE_USER_KEY);
@@ -63,15 +58,6 @@ export class AuthService {
     }
 
     return this.http.post<User>(AUTH_API_URL + `/userinfo`, { token })
-                    .pipe(tap(userData => {this.user = userData}))
+                    .pipe(tap(userData => {this.user = userData; }));
   }
-
-  // getUserInfo() {
-  //   const userInfo = {
-  //     userData: this.user,
-  //     token: this.authToken
-  //   };
-
-  //   return userInfo;
-  // }
 }

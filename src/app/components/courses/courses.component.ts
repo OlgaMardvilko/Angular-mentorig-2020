@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ICourse, CoursesFakeData } from 'src/app/models/course.model';
+import { ICourse, CoursesFakeData, ICoursesParams } from 'src/app/models/course.model';
 import { FilterPipe } from '../../pipes/filter.pipe';
 import { CoursesService } from 'src/app/services/courses.service';
 import { Subject } from 'rxjs';
@@ -17,6 +17,8 @@ export class CoursesComponent implements OnInit, OnDestroy {
   public searchValue: string;
   private destroy$ = new Subject();
 
+  private params: ICoursesParams;
+
   constructor(
     private filterPipe: FilterPipe,
     private coursesService: CoursesService,
@@ -25,17 +27,23 @@ export class CoursesComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
-    this.getCourses();
+    this.params = {
+      count: 10,
+      start: 0,
+      textFragment: ''
+    };
+
+    this.getCourses(this.params);
 
     this.coursesService
       .addCourse$
       .pipe(takeUntil(this.destroy$))
-      .subscribe(res => this.getCourses());
+      .subscribe(res => this.getCourses(this.params));
 
     this.coursesService
       .updateCourse$
       .pipe(takeUntil(this.destroy$))
-      .subscribe(res => this.getCourses());
+      .subscribe(res => this.getCourses(this.params));
   }
 
   ngOnDestroy(): void {
@@ -44,11 +52,12 @@ export class CoursesComponent implements OnInit, OnDestroy {
   }
 
   onSearch(searchValue: string): void {
-    this.getCourses();
-    const initialCourses = [...this.courses];
-    const filterByField = 'title';
-    const coursesListSearch = this.filterPipe.transform([...this.courses], filterByField, searchValue);
-    this.courses = searchValue ? coursesListSearch : initialCourses;
+    this.params.textFragment = searchValue;
+    this.getCourses(this.params);
+    // const initialCourses = [...this.courses];
+    // const filterByField = 'name';
+    // const coursesListSearch = this.filterPipe.transform([...this.courses], filterByField, searchValue);
+    // this.courses = searchValue ? coursesListSearch : initialCourses;
   }
 
   onAddCourse(isAddCourse: boolean): void {
@@ -70,9 +79,16 @@ export class CoursesComponent implements OnInit, OnDestroy {
       .subscribe(res => this.courses = res);
   }
 
-  private getCourses(): void {
+  onLoadMore(isLoadMore: boolean): void {
+    if (isLoadMore) {
+      this.params.start = this.courses.length;
+      this.getCourses(this.params);
+    }
+  }
+
+  private getCourses(params: ICoursesParams): void {
     this.coursesService
-      .getCourses()
+      .getCourses(params)
       .pipe(takeUntil(this.destroy$))
       .subscribe(courses => this.courses = courses);
   }

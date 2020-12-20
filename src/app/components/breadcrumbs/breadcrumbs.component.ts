@@ -13,7 +13,7 @@ import { CoursesService } from 'src/app/services/courses.service';
 export class BreadcrumbsComponent implements OnInit {
 
   get courseName(): string {
-    return this.courseData && this.courseData.title ? this.courseData.title : '';
+    return this.courseData && this.courseData.name ? this.courseData.name : '';
   }
 
   public courseData: ICourse;

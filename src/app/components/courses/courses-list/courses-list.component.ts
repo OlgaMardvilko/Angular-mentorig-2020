@@ -15,6 +15,7 @@ export class CoursesListComponent implements OnChanges {
   @Input() courses: ICourse[];
   @Output() deleteCourse = new EventEmitter<string>();
   @Output() editCourse = new EventEmitter<string>();
+  @Output() loadingMore = new EventEmitter<boolean>();
 
   constructor() { }
 
@@ -33,7 +34,7 @@ export class CoursesListComponent implements OnChanges {
   }
 
   loadMore(): void {
-    console.log('handler for LOAD MORE action');
+    this.loadingMore.emit(true);
   }
 
 }

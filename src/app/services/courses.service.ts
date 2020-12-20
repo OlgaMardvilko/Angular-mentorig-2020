@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
-import { ICourse, CoursesFakeData } from 'src/app/models/course.model';
+import { ICourse, CoursesFakeData, ICoursesParams } from 'src/app/models/course.model';
 import { Observable, of, Subject } from 'rxjs';
+import { HttpClient, HttpParams } from '@angular/common/http';
+
+const COURSES_API_URL = 'http://localhost:3004/courses';
 
 @Injectable({
   providedIn: 'root'
@@ -12,12 +15,27 @@ export class CoursesService {
 
   private courses: ICourse[];
 
-  constructor() {
-    this.courses = CoursesFakeData;
+  constructor(private http: HttpClient) {
+    // this.courses = CoursesFakeData;
   }
 
-  getCourses(): Observable<ICourse[]> {
-    return of(this.courses);
+  getCourses(params: ICoursesParams): Observable<ICourse[]> {
+    let httpParams = new HttpParams();
+
+    if (params.start) {
+      httpParams = httpParams.set('start', String(params.start));
+    }
+
+    if (params.count) {
+      httpParams = httpParams.set('count', String(params.count));
+    }
+
+    if (params.textFragment) {
+      httpParams = httpParams.set('textFragment', String(params.textFragment));
+    }
+
+    // return of(this.courses);
+    return this.http.get<ICourse[]>(COURSES_API_URL, {params: httpParams});
   }
 
   createCourse(course: ICourse): Observable<ICourse[]> {
@@ -25,7 +43,7 @@ export class CoursesService {
     return(of(this.courses));
   }
 
-  getCourseById(courseId: string): Observable<ICourse> {
+  getCourseById(courseId: number): Observable<ICourse> {
     const courseItem = this.courses.find(course => course.id === courseId);
     return(of(courseItem));
   }

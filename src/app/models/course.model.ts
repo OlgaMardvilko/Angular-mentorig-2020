@@ -1,28 +1,48 @@
 export interface ICourse {
-  id?: string;
-  title?: string;
-  creationDate?: Date | string;
+  id?: number;
+  name?: string;
+  date?: Date | string;
+  length?: number;
   duration?: number;
-  topRated?: boolean;
+  isTopRated?: boolean;
   description?: string;
+  authors: {
+    id: number;
+    name: string;
+  };
 }
 
+export interface ICoursesParams {
+  start: number;
+  count: number;
+  textFragment: string;
+}
+
+
 export class Course implements ICourse {
-  public id: string;
-  public title: string;
-  public creationDate: Date | string;
+  public id: number;
+  public name: string;
+  public date: Date | string;
+  public length: number;
   public duration: number;
-  public topRated: boolean;
+  public isTopRated: boolean;
   public description: string;
+  public authors: {
+    id: number;
+    name: string;
+  };
 
   constructor(course?: ICourse) {
-    course = course ? course : {};
+    course = course ? course : null;
     this.id = course.id || null;
-    this.title = course.title || null;
-    this.creationDate = course.creationDate || null;
+    this.name = course.name || null;
+    this.length = course.length || null;
+    this.date = course.date || null;
     this.duration = course.duration || null;
-    this.topRated = course.topRated || null;
+    this.isTopRated = course.isTopRated || null;
     this.description = course.description || null;
+    this.authors.id = course.authors.id || null;
+    this.authors.name = course.authors.name || null;
   }
 }
 

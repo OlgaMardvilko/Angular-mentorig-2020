@@ -76,15 +76,15 @@ export class AddCoursePageComponent implements OnInit, OnDestroy {
   }
 
   private createAddCourseForm(): void {
-    const title = this.courseData ? this.courseData.title : '';
+    const name = this.courseData ? this.courseData.name : '';
     const description = this.courseData && this.courseData.description ? this.courseData.description : '';
-    const duration = this.courseData && this.courseData.duration ? this.courseData.duration : '';
-    const date = this.courseData && this.courseData.creationDate ? this.courseData.creationDate : '';
+    const length = this.courseData && this.courseData.length ? this.courseData.length : '';
+    const date = this.courseData && this.courseData.date ? this.courseData.date : '';
 
     this.addCourseForm = this.fb.group({
-      title: [title],
+      name: [name],
       description: [description],
-      duration: [duration],
+      length: [length],
       date: [date],
       authors: ['']
     });

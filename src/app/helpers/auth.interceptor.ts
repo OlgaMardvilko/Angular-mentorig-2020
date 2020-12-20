@@ -35,11 +35,9 @@ export class AuthInterceptor implements HttpInterceptor {
     }, (err: any) => {
       if (err instanceof HttpErrorResponse) {
         if (err.status === 401) {
-          // redirect to the login route
-          // or show a modal
+          // logout if error
           this.ngZone.run(() => {
-            this.authService.logout;
-            console.log('logout')
+            this.authService.logout();
           });
         }
       }
