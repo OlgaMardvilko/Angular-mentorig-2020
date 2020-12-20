@@ -58,14 +58,22 @@ export class AddCoursePageComponent implements OnInit, OnDestroy {
     };
 
     this.courseId
-      ? this.coursesService.updateCourse(courseData)
-      : this.coursesService.createCourse(courseData);
+      ? this.updateCourse(courseData)
+      : this.createCourse(courseData);
 
     this.router.navigate(['courses']);
   }
 
   onCancel(): void {
     this.addCourseForm.reset();
+  }
+
+  private updateCourse(course: ICourse): void {
+    this.coursesService.updateCourse(course).subscribe(res => console.log(res));
+  }
+
+  private createCourse(course: ICourse): void {
+    this.coursesService.createCourse(course).subscribe(res => console.log(res));
   }
 
   private getCourseData(courseId: string): void {

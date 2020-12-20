@@ -1,4 +1,4 @@
-import { Injectable, NgZone } from '@angular/core';
+import { Injectable } from '@angular/core';
 import {
   HttpRequest,
   HttpHandler,
@@ -15,10 +15,7 @@ import { tap } from 'rxjs/operators';
 
 export class AuthInterceptor implements HttpInterceptor {
 
-  constructor(
-    private authService: AuthService,
-    private ngZone: NgZone
-  ) {}
+  constructor(private authService: AuthService) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     const token = this.authService.authToken;
@@ -30,15 +27,13 @@ export class AuthInterceptor implements HttpInterceptor {
 
     return next.handle(request).pipe(tap((event: HttpEvent<any>) => {
       if (event instanceof HttpResponse) {
-          // do stuff with response if you want
+          // do smth with response if need
       }
     }, (err: any) => {
       if (err instanceof HttpErrorResponse) {
         if (err.status === 401) {
           // logout if error
-          this.ngZone.run(() => {
-            this.authService.logout();
-          });
+          this.authService.logout();
         }
       }
     }));

@@ -54,10 +54,6 @@ export class CoursesComponent implements OnInit, OnDestroy {
   onSearch(searchValue: string): void {
     this.params.textFragment = searchValue;
     this.getCourses(this.params);
-    // const initialCourses = [...this.courses];
-    // const filterByField = 'name';
-    // const coursesListSearch = this.filterPipe.transform([...this.courses], filterByField, searchValue);
-    // this.courses = searchValue ? coursesListSearch : initialCourses;
   }
 
   onAddCourse(isAddCourse: boolean): void {
@@ -76,7 +72,7 @@ export class CoursesComponent implements OnInit, OnDestroy {
     this.coursesService
       .removeCourse(courseId)
       .pipe(takeUntil(this.destroy$))
-      .subscribe(res => this.courses = res);
+      .subscribe(res => this.courses = this.courses.filter(course => course.id !== Number(courseId)));
   }
 
   onLoadMore(isLoadMore: boolean): void {
