@@ -1,5 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { Observable, Subject } from 'rxjs';
+import { debounceTime, distinctUntilChanged, filter, map, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-search-courses',
@@ -9,6 +11,7 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 export class SearchCoursesComponent implements OnInit {
 
   public searchForm: FormGroup;
+  public searchTerm$ = new Subject<string>();
 
   @Output() search = new EventEmitter<string>();
 
@@ -18,11 +21,19 @@ export class SearchCoursesComponent implements OnInit {
     this.searchForm = this.fb.group({
       coursesSearch: ['']
     });
+
+    this.movieSearchInput();
   }
 
-  searchCourse(): void {
-    const searchValue = this.searchForm.value;
-    this.search.emit(searchValue.coursesSearch);
+  movieSearchInput(): void {
+    this.searchTerm$.pipe(
+      distinctUntilChanged(),
+      debounceTime(500),
+      map(value => value.trim()),
+      filter(value => value.length > 2),
+    ).subscribe(res => {
+      this.search.emit(res);
+    });
   }
 
 }
