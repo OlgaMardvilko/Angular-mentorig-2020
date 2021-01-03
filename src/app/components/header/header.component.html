@@ -1,5 +1,9 @@
 <mat-toolbar>
   <app-logo></app-logo>
   <span class="spacer"></span>
-  <app-user-authorization></app-user-authorization>
+  <div *ngIf="!userData"><app-user-login></app-user-login></div>
+  <div class="user-block" *ngIf="!!userData">
+    <p class="user-info">{{UserName}}</p>
+    <app-user-logout></app-user-logout>
+  </div>
 </mat-toolbar>

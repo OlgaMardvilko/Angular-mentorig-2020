@@ -33,6 +33,8 @@ import { ConfirmDeleteDialogComponent } from './components/courses/confirm-delet
 import { AddCoursePageComponent } from './components/courses/add-course-page/add-course-page.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { LoaderComponent } from './components/loader/loader.component';
+import { UserLoginComponent } from './components/header/user-authorization/user-login/user-login.component';
+import { UserLogoutComponent } from './components/header/user-authorization/user-logout/user-logout.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +54,8 @@ import { LoaderComponent } from './components/loader/loader.component';
     AddCoursePageComponent,
     NotFoundComponent,
     LoaderComponent,
+    UserLoginComponent,
+    UserLogoutComponent,
     BorderColorDirective,
     TimePipe,
     OrderByPipe,
