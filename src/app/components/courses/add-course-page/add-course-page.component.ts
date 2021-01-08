@@ -58,14 +58,22 @@ export class AddCoursePageComponent implements OnInit, OnDestroy {
     };
 
     this.courseId
-      ? this.coursesService.updateCourse(courseData)
-      : this.coursesService.createCourse(courseData);
+      ? this.updateCourse(courseData)
+      : this.createCourse(courseData);
 
     this.router.navigate(['courses']);
   }
 
   onCancel(): void {
     this.addCourseForm.reset();
+  }
+
+  private updateCourse(course: ICourse): void {
+    this.coursesService.updateCourse(course).subscribe(res => console.log(res));
+  }
+
+  private createCourse(course: ICourse): void {
+    this.coursesService.createCourse(course).subscribe(res => console.log(res));
   }
 
   private getCourseData(courseId: string): void {
@@ -76,15 +84,15 @@ export class AddCoursePageComponent implements OnInit, OnDestroy {
   }
 
   private createAddCourseForm(): void {
-    const title = this.courseData ? this.courseData.title : '';
+    const name = this.courseData ? this.courseData.name : '';
     const description = this.courseData && this.courseData.description ? this.courseData.description : '';
-    const duration = this.courseData && this.courseData.duration ? this.courseData.duration : '';
-    const date = this.courseData && this.courseData.creationDate ? this.courseData.creationDate : '';
+    const length = this.courseData && this.courseData.length ? this.courseData.length : '';
+    const date = this.courseData && this.courseData.date ? this.courseData.date : '';
 
     this.addCourseForm = this.fb.group({
-      title: [title],
+      name: [name],
       description: [description],
-      duration: [duration],
+      length: [length],
       date: [date],
       authors: ['']
     });

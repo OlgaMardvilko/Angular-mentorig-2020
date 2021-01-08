@@ -1,17 +1,29 @@
+export interface IUserName {
+  first: string;
+  last: string;
+}
+
 export interface IUser {
-  id: string;
-  firstName: string;
-  lastName: string;
+  id: number;
+  fakeToken: string;
+  name: IUserName;
+  login: string;
+  password: string;
 }
 
 export class User implements IUser {
-  public id: string;
-  public firstName: string;
-  public lastName: string;
+  public id: number;
+  public name: IUserName;
+  public fakeToken: string;
+  public login: string;
+  public password: string;
 
   constructor(user: IUser) {
     this.id = user.id || null;
-    this.firstName = user.firstName || null;
-    this.lastName = user.lastName || null;
+    this.fakeToken = user.fakeToken || null;
+    this.name.first = user.name.first || null;
+    this.name.last = user.name.last || null;
+    this.login = user.login || null;
+    this.password = user.password || null;
   }
 }
