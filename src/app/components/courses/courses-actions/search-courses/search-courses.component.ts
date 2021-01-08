@@ -30,7 +30,7 @@ export class SearchCoursesComponent implements OnInit {
       distinctUntilChanged(),
       debounceTime(500),
       map(value => value.trim()),
-      filter(value => value.length > 2),
+      filter(value => value.length > 2 || value.length === 0),
     ).subscribe(res => {
       this.search.emit(res);
     });
