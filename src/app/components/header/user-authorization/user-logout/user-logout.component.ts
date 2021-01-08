@@ -3,27 +3,21 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
-  selector: 'app-user-authorization',
-  templateUrl: './user-authorization.component.html',
-  styleUrls: ['./user-authorization.component.scss']
+  selector: 'app-user-logout',
+  templateUrl: './user-logout.component.html',
+  styleUrls: ['./user-logout.component.scss']
 })
-export class UserAuthorizationComponent implements OnInit {
+export class UserLogoutComponent implements OnInit {
 
   constructor(
     private router: Router,
     private authService: AuthService
   ) { }
 
-  ngOnInit(): void {
-  }
-
-  logIn(): void {
-    this.router.navigate(['auth/login']);
-  }
+  ngOnInit(): void { }
 
   logOut(): void {
     this.authService.logout();
     this.router.navigate(['auth/login']);
   }
-
 }

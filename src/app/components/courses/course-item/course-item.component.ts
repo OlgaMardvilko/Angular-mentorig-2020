@@ -32,15 +32,15 @@ export class CourseItemComponent implements OnInit, OnChanges {
     }
   }
 
-  onEditCourse(courseId: string): void {
+  onEditCourse(courseId: number): void {
     this.editCourse.emit(courseId);
   }
 
-  onDeleteCourse(courseId: string): void {
+  onDeleteCourse(courseId: number): void {
     this.confirmDelete(courseId);
   }
 
-  confirmDelete(courseId: string): void {
+  confirmDelete(courseId: number): void {
     const dialogRef = this.dialog.open(ConfirmDeleteDialogComponent);
 
     dialogRef.afterClosed().subscribe(result => {

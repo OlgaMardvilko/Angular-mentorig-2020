@@ -3,3 +3,14 @@
 mat-toolbar {
   background: $bg-dark-gray;
 }
+
+.user-block {
+  display: flex;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  color: $white;
+  font-size: 12px;
+}

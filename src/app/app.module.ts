@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './helpers/auth.interceptor';
+import { LoaderInterceptor } from './helpers/loader.interceptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -31,6 +32,10 @@ import { CourseItemComponent } from './components/courses/course-item/course-ite
 import { ConfirmDeleteDialogComponent } from './components/courses/confirm-delete-dialog/confirm-delete-dialog.component';
 import { AddCoursePageComponent } from './components/courses/add-course-page/add-course-page.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { LoaderComponent } from './components/loader/loader.component';
+import { UserLoginComponent } from './components/header/user-authorization/user-login/user-login.component';
+import { UserLogoutComponent } from './components/header/user-authorization/user-logout/user-logout.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,6 +53,9 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
     ConfirmDeleteDialogComponent,
     AddCoursePageComponent,
     NotFoundComponent,
+    LoaderComponent,
+    UserLoginComponent,
+    UserLogoutComponent,
     BorderColorDirective,
     TimePipe,
     OrderByPipe,
@@ -64,7 +72,8 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
   ],
   providers: [
     FilterPipe,
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true }
   ],
   entryComponents: [ConfirmDeleteDialogComponent],
   bootstrap: [AppComponent]
