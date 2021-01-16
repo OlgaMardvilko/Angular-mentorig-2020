@@ -21,7 +21,7 @@ export class CoursesComponent implements OnInit, OnDestroy {
 
   private params: ICoursesParams;
 
-  courses$: Observable<any>;
+  courses$: Observable<ICourse[]>;
 
   constructor(
     private filterPipe: FilterPipe,

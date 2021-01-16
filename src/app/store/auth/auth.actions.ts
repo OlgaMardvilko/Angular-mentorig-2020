@@ -47,10 +47,3 @@ export const getUserProfileComplete = createAction(
   AuthActionTypes.GET_USER_PROFILE_COMPLETE,
   props<{ profile: IUser }>()
 );
-
-// export const loginComplete = createAction(
-//   '[Auth] loginComplete',
-//   props<{ profile: IUser; isLoggedIn: boolean }>()
-// );
-// export const logout = createAction('[Auth] logout');
-// export const logoutComplete = createAction('[Auth] logoutComplete');
