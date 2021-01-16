@@ -35,6 +35,12 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { LoaderComponent } from './components/loader/loader.component';
 import { UserLoginComponent } from './components/header/user-authorization/user-login/user-login.component';
 import { UserLogoutComponent } from './components/header/user-authorization/user-logout/user-logout.component';
+// store
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { appReducer, appEffects } from './store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -68,7 +74,10 @@ import { UserLogoutComponent } from './components/header/user-authorization/user
     AppMaterialModule,
     FormsModule,
     ReactiveFormsModule,
-    LoginPageModule
+    LoginPageModule,
+    StoreModule.forRoot(appReducer),
+    EffectsModule.forRoot(appEffects),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
   ],
   providers: [
     FilterPipe,

@@ -5,7 +5,7 @@
     (addCourse)="onAddCourse($event)">
   </app-courses-actions>
   <app-courses-list
-    [courses]="courses"
+    [courses]="courses$ | async"
     (editCourse)="onEditCourse($event)"
     (deleteCourse)="onDeleteCourse($event)"
     (loadingMore)="onLoadMore($event)">

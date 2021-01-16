@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { IUser } from 'src/app/models/user.model';
-import { AuthService } from 'src/app/services/auth.service';
+import { getUserProfile, checkAuth, selectIsAuthenticated, selectUserInfo } from '../../store';
+import { select, Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -8,21 +10,17 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  public userData: IUser;
 
-  get UserName(): string {
-    return `${this.userData.name.first} ${this.userData.name.last}`;
-  }
+  userProfile$: Observable<IUser>;
+  isLoggedIn$: Observable<boolean>;
 
-  constructor(private authService: AuthService) { }
+  constructor(private store: Store<any>) { }
 
   ngOnInit(): void {
-    this.getUserInfo();
-  }
-
-  getUserInfo(): void {
-    this.authService.getUserInfo()
-      .subscribe(user => this.userData = user);
+    this.isLoggedIn$ = this.store.pipe(select(selectIsAuthenticated));
+    this.userProfile$ = this.store.pipe((select(selectUserInfo)));
+    this.store.dispatch(checkAuth());
+    this.store.dispatch(getUserProfile());
   }
 
 }

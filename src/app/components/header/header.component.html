@@ -1,9 +1,11 @@
 <mat-toolbar>
   <app-logo></app-logo>
   <span class="spacer"></span>
-  <div *ngIf="!userData"><app-user-login></app-user-login></div>
-  <div class="user-block" *ngIf="!!userData">
-    <p class="user-info">{{UserName}}</p>
-    <app-user-logout></app-user-logout>
+  <div *ngIf="!isLoggedIn$ | async"><app-user-login></app-user-login></div>
+  <div *ngIf="isLoggedIn$ | async">
+    <div class="user-block" *ngIf="userProfile$ | async as userProfile">
+      <p class="user-info">{{userProfile.name.first}} {{userProfile.name.last}}</p>
+      <app-user-logout></app-user-logout>
+    </div>
   </div>
 </mat-toolbar>

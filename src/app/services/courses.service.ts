@@ -13,8 +13,6 @@ export class CoursesService {
   public addCourse$: Subject<ICourse> = new Subject();
   public updateCourse$: Subject<ICourse> = new Subject();
 
-  private courses: ICourse[];
-
   constructor(private http: HttpClient) {}
 
   getCourses(params: ICoursesParams): Observable<ICourse[]> {
