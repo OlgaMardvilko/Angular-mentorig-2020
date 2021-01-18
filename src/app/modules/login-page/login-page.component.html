@@ -5,12 +5,18 @@
       <mat-form-field class="login-full-width" appearance="outline" color='accent'>
         <mat-label>E-mail</mat-label>
         <input type="text" placeholder="Enter e-mail" matInput formControlName="login">
+        <mat-error *ngIf="hasError('login', 'required')">
+          {{VALIDATIONS.REQUIRED}}
+        </mat-error>
       </mat-form-field>
       <mat-form-field class="login-full-width" appearance="outline" color='accent'>
         <mat-label>Password</mat-label>
         <input type="text" placeholder="Enter password" matInput formControlName="password">
+        <mat-error *ngIf="hasError('password', 'required')">
+          {{VALIDATIONS.REQUIRED}}
+        </mat-error>
       </mat-form-field>
-      <button class="login-btn" mat-button (click)="login()">
+      <button class="login-btn" mat-button (click)="login()" [disabled]="isFormInvalid">
         login
       </button>
     </form>

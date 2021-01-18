@@ -9,6 +9,12 @@
   margin: 0 auto;
   padding: 30px 40px;
 
+  .add-course-form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
   .full-width {
     width: 100%;
   }

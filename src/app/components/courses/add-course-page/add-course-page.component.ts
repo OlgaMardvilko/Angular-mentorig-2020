@@ -1,11 +1,12 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { switchMap, takeUntil } from 'rxjs/operators';
 import { Observable, Subject } from 'rxjs';
 import { ICourse } from 'src/app/models/course.model';
 import { selectCurrentCourse, addCourse, updateCourse } from '../../../store';
 import { select, Store } from '@ngrx/store';
+import { VALIDATIONS } from '../../../config/validation.config';
 
 @Component({
   selector: 'app-add-course-page',
@@ -20,8 +21,14 @@ export class AddCoursePageComponent implements OnInit, OnDestroy {
   private destroy$ = new Subject();
   currentCourses$: Observable<ICourse> = this.store.pipe(select(selectCurrentCourse));
 
+  public VALIDATIONS = VALIDATIONS;
+
   get formAction(): string {
     return this.courseId ? 'Edit course' : 'Add course';
+  }
+
+  get isFormInvalid(): boolean {
+    return this.addCourseForm.invalid;
   }
 
   constructor(
@@ -54,7 +61,7 @@ export class AddCoursePageComponent implements OnInit, OnDestroy {
 
   addCourse(): void {
     const formValue = this.addCourseForm.value;
-    const courseId = this.courseId ? this.courseId : '11';
+    const courseId = this.courseId ? this.courseId : this.createId();
 
     const courseData = {
       id: courseId,
@@ -68,6 +75,10 @@ export class AddCoursePageComponent implements OnInit, OnDestroy {
 
   onCancel(): void {
     this.addCourseForm.reset();
+  }
+
+  hasError(controlName: string, rule: string): boolean {
+    return this.addCourseForm.get(controlName).hasError(rule);
   }
 
   private updateCourse(course: ICourse): void {
@@ -85,12 +96,16 @@ export class AddCoursePageComponent implements OnInit, OnDestroy {
     const date = courseData && courseData.date ? this.courseData.date : '';
 
     this.addCourseForm = this.fb.group({
-      name: [name],
-      description: [description],
+      name: [name, [Validators.required, Validators.maxLength(50)]],
+      description: [description, [Validators.required, Validators.maxLength(500)]],
       length: [length],
       date: [date],
       authors: ['']
     });
+  }
+
+  private createId(): string {
+    return Date.now().toString();
   }
 
 }

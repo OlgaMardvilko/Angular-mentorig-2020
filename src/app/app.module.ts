@@ -12,6 +12,7 @@ import { AppMaterialModule } from './app-material.module';
 import { LoginPageModule } from './modules/login-page/login-page.module';
 // directives
 import { BorderColorDirective } from '../app/directives/border-color.directive';
+import { AppDateValidateDirective, AppNumberValidateDirective } from '../app/services/validators';
 // pipes
 import { TimePipe } from './pipes/time.pipe';
 import { OrderByPipe } from './pipes/order-by.pipe';
@@ -35,6 +36,8 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { LoaderComponent } from './components/loader/loader.component';
 import { UserLoginComponent } from './components/header/user-authorization/user-login/user-login.component';
 import { UserLogoutComponent } from './components/header/user-authorization/user-logout/user-logout.component';
+import { DateCustomInputComponent } from './components/courses/add-course-page/date-custom-input/date-custom-input.component';
+import { DurationCustomInputComponent } from './components/courses/add-course-page/duration-custom-input/duration-custom-input.component';
 // store
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
@@ -62,7 +65,11 @@ import { environment } from '../environments/environment';
     LoaderComponent,
     UserLoginComponent,
     UserLogoutComponent,
+    DateCustomInputComponent,
+    DurationCustomInputComponent,
     BorderColorDirective,
+    AppDateValidateDirective,
+    AppNumberValidateDirective,
     TimePipe,
     OrderByPipe,
   ],
