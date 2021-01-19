@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
+import { Store } from '@ngrx/store';
+import { login } from '../../store';
 
 @Component({
   selector: 'app-login-page',
@@ -19,7 +21,8 @@ export class LoginPageComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private store: Store
   ) { }
 
   ngOnInit(): void {
@@ -28,10 +31,7 @@ export class LoginPageComponent implements OnInit {
 
   login(): void {
     const loginData = this.loginForm.value;
-    const token = 'Successful Login';
-    this.authService.login(loginData)
-      .subscribe(res => console.log('res login', res));
-    this.router.navigate(['/courses']);
+    this.store.dispatch(login({userData: loginData}));
   }
 
   private createLoginForm(): void {

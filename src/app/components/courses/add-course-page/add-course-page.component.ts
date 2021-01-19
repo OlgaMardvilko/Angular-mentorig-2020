@@ -1,10 +1,11 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
-import { CoursesService } from 'src/app/services/courses.service';
-import { Router, ActivatedRoute } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { switchMap, takeUntil } from 'rxjs/operators';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { ICourse } from 'src/app/models/course.model';
+import { selectCurrentCourse, addCourse, updateCourse } from '../../../store';
+import { select, Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-add-course-page',
@@ -17,6 +18,7 @@ export class AddCoursePageComponent implements OnInit, OnDestroy {
   public courseId: string;
   public courseData: ICourse;
   private destroy$ = new Subject();
+  currentCourses$: Observable<ICourse> = this.store.pipe(select(selectCurrentCourse));
 
   get formAction(): string {
     return this.courseId ? 'Edit course' : 'Add course';
@@ -24,12 +26,16 @@ export class AddCoursePageComponent implements OnInit, OnDestroy {
 
   constructor(
     private fb: FormBuilder,
-    private coursesService: CoursesService,
-    private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private store: Store<any>
   ) { }
 
   ngOnInit(): void {
+    this.currentCourses$.subscribe(currentCourse => {
+      this.courseData = currentCourse;
+      this.createAddCourseForm(this.courseData);
+    });
+
     this.route.paramMap
       .pipe(
         switchMap(params => params.getAll('id')),
@@ -37,10 +43,8 @@ export class AddCoursePageComponent implements OnInit, OnDestroy {
       )
       .subscribe(data => {
         this.courseId = data;
-        this.getCourseData(this.courseId);
       });
 
-    this.createAddCourseForm();
   }
 
   ngOnDestroy(): void {
@@ -60,8 +64,6 @@ export class AddCoursePageComponent implements OnInit, OnDestroy {
     this.courseId
       ? this.updateCourse(courseData)
       : this.createCourse(courseData);
-
-    this.router.navigate(['courses']);
   }
 
   onCancel(): void {
@@ -69,25 +71,18 @@ export class AddCoursePageComponent implements OnInit, OnDestroy {
   }
 
   private updateCourse(course: ICourse): void {
-    this.coursesService.updateCourse(course).subscribe(res => console.log(res));
+    this.store.dispatch(updateCourse({course}));
   }
 
   private createCourse(course: ICourse): void {
-    this.coursesService.createCourse(course).subscribe(res => console.log(res));
+    this.store.dispatch(addCourse({course}));
   }
 
-  private getCourseData(courseId: string): void {
-    this.coursesService
-      .getCourseById(courseId)
-      .pipe(takeUntil(this.destroy$))
-      .subscribe(res => this.courseData = res);
-  }
-
-  private createAddCourseForm(): void {
-    const name = this.courseData ? this.courseData.name : '';
-    const description = this.courseData && this.courseData.description ? this.courseData.description : '';
-    const length = this.courseData && this.courseData.length ? this.courseData.length : '';
-    const date = this.courseData && this.courseData.date ? this.courseData.date : '';
+  private createAddCourseForm(courseData: ICourse): void {
+    const name = courseData ? courseData.name : '';
+    const description = courseData && courseData.description ? this.courseData.description : '';
+    const length = courseData && courseData.length ? this.courseData.length : '';
+    const date = courseData && courseData.date ? this.courseData.date : '';
 
     this.addCourseForm = this.fb.group({
       name: [name],

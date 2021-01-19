@@ -2,9 +2,11 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ICourse, CoursesFakeData, ICoursesParams } from 'src/app/models/course.model';
 import { FilterPipe } from '../../pipes/filter.pipe';
 import { CoursesService } from 'src/app/services/courses.service';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { Router, ActivatedRoute } from '@angular/router';
+import { getCourses, getCurrentCourse, selectCourses } from '../../store';
+import { select, Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-courses',
@@ -19,11 +21,14 @@ export class CoursesComponent implements OnInit, OnDestroy {
 
   private params: ICoursesParams;
 
+  courses$: Observable<ICourse[]>;
+
   constructor(
     private filterPipe: FilterPipe,
     private coursesService: CoursesService,
     private router: Router,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private store: Store<any>
   ) { }
 
   ngOnInit(): void {
@@ -32,6 +37,9 @@ export class CoursesComponent implements OnInit, OnDestroy {
       start: 0,
       textFragment: ''
     };
+
+    this.courses$ = this.store.pipe(select(selectCourses));
+    this.store.dispatch(getCourses({params: this.params}));
 
     this.getCourses(this.params);
 
@@ -52,8 +60,10 @@ export class CoursesComponent implements OnInit, OnDestroy {
   }
 
   onSearch(searchValue: string): void {
-    this.params.textFragment = searchValue;
-    this.getCourses(this.params);
+    this.params = {...this.params,
+      textFragment: searchValue
+    };
+    this.store.dispatch(getCourses({params: this.params}));
   }
 
   onAddCourse(isAddCourse: boolean): void {
@@ -66,6 +76,8 @@ export class CoursesComponent implements OnInit, OnDestroy {
     if (movieId) {
       this.router.navigate(['courses', movieId]);
     }
+
+    this.store.dispatch(getCurrentCourse({courseId: movieId}));
   }
 
   onDeleteCourse(courseId: string): void {
@@ -77,8 +89,13 @@ export class CoursesComponent implements OnInit, OnDestroy {
 
   onLoadMore(isLoadMore: boolean): void {
     if (isLoadMore) {
-      this.params.start = this.courses.length;
-      this.getCourses(this.params);
+      this.courses$.subscribe(res => {
+        this.params = {...this.params,
+          start: res.length
+        };
+      });
+
+      this.store.dispatch(getCourses({params: this.params}));
     }
   }
 
