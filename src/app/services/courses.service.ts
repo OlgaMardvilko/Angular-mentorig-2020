@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import { ICourse, ICoursesParams } from 'src/app/models/course.model';
+import { IAuthor, ICourse, ICoursesParams } from 'src/app/models/course.model';
 import { Observable, of, Subject } from 'rxjs';
 import { HttpClient, HttpParams } from '@angular/common/http';
 
 const COURSES_API_URL = 'http://localhost:3004/courses';
+const AUTHORS_API_URL = 'http://localhost:3004/authors';
 
 @Injectable({
   providedIn: 'root'
@@ -47,5 +48,9 @@ export class CoursesService {
 
   removeCourse(courseId: string): Observable<ICourse> {
     return this.http.delete<ICourse>(COURSES_API_URL + `/${courseId}`);
+  }
+
+  getCourseAuthors(): Observable<IAuthor[]> {
+    return this.http.get<IAuthor[]>(AUTHORS_API_URL);
   }
 }

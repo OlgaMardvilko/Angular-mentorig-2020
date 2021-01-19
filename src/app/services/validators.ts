@@ -1,5 +1,5 @@
 import { Directive } from '@angular/core';
-import { Validator, AbstractControl, NG_VALIDATORS } from '@angular/forms';
+import { Validator, AbstractControl, NG_VALIDATORS, ValidatorFn } from '@angular/forms';
 
 @Directive({
   selector: '[appDateValidateDirective]',
@@ -13,8 +13,6 @@ import { Validator, AbstractControl, NG_VALIDATORS } from '@angular/forms';
 export class AppDateValidateDirective implements Validator {
   validate(control: AbstractControl): {[key: string]: any} | null {
     const DATE_REGEXP = /^([0-2][0-9]|(3)[0-1])(\/)(((0)[0-9])|((1)[0-2]))(\/)\d{4}$/i;
-
-    // /^[1-9]+[0-9]*$/
 
     return DATE_REGEXP.test(control.value) ? null : {
       dateValueInvalid: true
@@ -39,4 +37,10 @@ export class AppNumberValidateDirective implements Validator {
       numberValueInvalid: true
     };
   }
+}
+
+export function selectValueValidator(selected: any): ValidatorFn {
+  return (control: AbstractControl): {[key: string]: any} | null => {
+    return selected.length ? null : {selectedValueInvalid: true} ;
+  };
 }

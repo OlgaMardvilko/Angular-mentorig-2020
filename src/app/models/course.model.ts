@@ -1,3 +1,8 @@
+export interface IAuthor {
+  id?: number;
+  name: string;
+}
+
 export interface ICourse {
   id?: number;
   name?: string;
@@ -6,10 +11,7 @@ export interface ICourse {
   duration?: number;
   isTopRated?: boolean;
   description?: string;
-  authors: {
-    id: number;
-    name: string;
-  };
+  authors: IAuthor[];
 }
 
 export interface ICoursesParams {
@@ -27,10 +29,7 @@ export class Course implements ICourse {
   public duration: number;
   public isTopRated: boolean;
   public description: string;
-  public authors: {
-    id: number;
-    name: string;
-  };
+  public authors: IAuthor[];
 
   constructor(course?: ICourse) {
     course = course ? course : null;
@@ -41,8 +40,6 @@ export class Course implements ICourse {
     this.duration = course.duration || null;
     this.isTopRated = course.isTopRated || null;
     this.description = course.description || null;
-    this.authors.id = course.authors.id || null;
-    this.authors.name = course.authors.name || null;
   }
 }
 

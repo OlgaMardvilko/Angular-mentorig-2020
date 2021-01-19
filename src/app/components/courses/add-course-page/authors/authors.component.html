@@ -1,0 +1,30 @@
+<div [formGroup]="authorsForm">
+  <mat-form-field class="authors-field" appearance="outline">
+    <mat-label>Authors</mat-label>
+    <mat-chip-list #chipList formControlName="authors">
+      <mat-chip *ngFor="let author of selectedAuthors"
+        [selectable]="selectable"
+        [removable]="removable"
+        (removed)="remove(author)">
+        {{author.name}}
+        <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+      </mat-chip>
+      <input
+        placeholder="Select authors"
+        #authorsInput
+        [formControl]="authorCtrl"
+        [matAutocomplete]="authors"
+        [matChipInputFor]="chipList"
+        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+        (matChipInputTokenEnd)="add($event)">
+    </mat-chip-list>
+    <mat-autocomplete #authors="matAutocomplete" (optionSelected)="selected($event)">
+      <mat-option *ngFor="let author of availableAuthors" [value]="author">
+        {{author.name}}
+      </mat-option>
+    </mat-autocomplete>
+    <mat-error *ngIf="hasError('selectedValueInvalid')">
+      {{VALIDATIONS.SELECT_MIN_ONE}}
+    </mat-error>
+  </mat-form-field>
+</div>

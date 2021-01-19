@@ -38,6 +38,7 @@ import { UserLoginComponent } from './components/header/user-authorization/user-
 import { UserLogoutComponent } from './components/header/user-authorization/user-logout/user-logout.component';
 import { DateCustomInputComponent } from './components/courses/add-course-page/date-custom-input/date-custom-input.component';
 import { DurationCustomInputComponent } from './components/courses/add-course-page/duration-custom-input/duration-custom-input.component';
+import { AuthorsComponent } from './components/courses/add-course-page/authors/authors.component';
 // store
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
@@ -67,6 +68,7 @@ import { environment } from '../environments/environment';
     UserLogoutComponent,
     DateCustomInputComponent,
     DurationCustomInputComponent,
+    AuthorsComponent,
     BorderColorDirective,
     AppDateValidateDirective,
     AppNumberValidateDirective,
