@@ -7,7 +7,6 @@ import { Observable, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { IAuthor } from 'src/app/models/course.model';
 import { selectValueValidator } from '../../../../services/validators';
-import { VALIDATIONS } from '../../../../config/validation.config';
 
 @Component({
   selector: 'app-authors',
@@ -35,7 +34,6 @@ export class AuthorsComponent implements OnInit, OnDestroy, ControlValueAccessor
   authorsForm: FormGroup;
   filteredAuthors: Observable<string[]>;
   selectedAuthors: IAuthor[] = [];
-  VALIDATIONS = VALIDATIONS;
 
   private destroy$ = new Subject();
 

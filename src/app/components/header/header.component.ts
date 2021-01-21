@@ -3,6 +3,7 @@ import { IUser } from 'src/app/models/user.model';
 import { getUserProfile, checkAuth, selectIsAuthenticated, selectUserInfo } from '../../store';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-header',
@@ -14,7 +15,10 @@ export class HeaderComponent implements OnInit {
   userProfile$: Observable<IUser>;
   isLoggedIn$: Observable<boolean>;
 
-  constructor(private store: Store<any>) { }
+  constructor(
+    private store: Store<any>,
+    public translate: TranslateService
+  ) { }
 
   ngOnInit(): void {
     this.isLoggedIn$ = this.store.pipe(select(selectIsAuthenticated));

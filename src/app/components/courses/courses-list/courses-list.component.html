@@ -7,10 +7,10 @@
     ></app-course-item>
   </ng-container>
   <button class="load-btn" mat-button (click)="loadMore()">
-    Load more
+    {{'COURSES.LOAD_MORE' | translate}}
   </button>
 </section>
 
 <section *ngIf="!coursesList.length" class="no-data">
-  <p>No data, feel free to add new course</p>
+  <p>{{'COURSES.NO_DATA' | translate}}</p>
 </section>

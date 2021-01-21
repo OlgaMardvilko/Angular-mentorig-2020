@@ -1,6 +1,5 @@
 import { Component, forwardRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { VALIDATIONS } from '../../../../config/validation.config';
 
 @Component({
   selector: 'app-date-custom-input',
@@ -16,7 +15,6 @@ import { VALIDATIONS } from '../../../../config/validation.config';
 export class DateCustomInputComponent implements ControlValueAccessor {
   public date: string;
   public disabled = false;
-  public VALIDATIONS = VALIDATIONS;
   private onChange = (value: string) => {};
   private onTouched = () => {};
 
