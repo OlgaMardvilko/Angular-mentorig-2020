@@ -2,30 +2,33 @@
 <main>
   <mat-card class="add-course-panel">
     <h2>{{formAction}}</h2>
-    <form class="login-form" [formGroup]="addCourseForm">
+    <form class="add-course-form" [formGroup]="addCourseForm">
       <mat-form-field class="full-width" appearance="outline" color='accent'>
-        <mat-label>Title:</mat-label>
-        <input type="text" placeholder="Text input" matInput formControlName="name">
+        <mat-label>{{'COURSES.ADD_FORM.LABEL.NAME' | translate}}</mat-label>
+        <input type="text" placeholder="{{'COURSES.ADD_FORM.PLACEHOLDER.NAME' | translate}}" matInput formControlName="name">
+        <mat-error *ngIf="hasError('name', 'required')">
+          {{'VALIDATIONS.REQUIRED' | translate}}
+        </mat-error>
+        <mat-error *ngIf="hasError('name', 'maxLength')">
+          {{'VALIDATIONS.MAX_LENGTH_50' | translate}}
+        </mat-error>
       </mat-form-field>
       <mat-form-field class="full-width" appearance="outline" color='accent'>
-        <mat-label>Description:</mat-label>
-        <textarea placeholder="Add description" matInput formControlName="description" rows="6"></textarea>
+        <mat-label>{{'COURSES.ADD_FORM.LABEL.DESCRIPTION' | translate}}</mat-label>
+        <textarea placeholder="{{'COURSES.ADD_FORM.PLACEHOLDER.DESCRIPTION' | translate}}" matInput formControlName="description" rows="6"></textarea>
+        <mat-error *ngIf="hasError('description', 'required')">
+          {{'VALIDATIONS.REQUIRED' | translate}}
+        </mat-error>
+        <mat-error *ngIf="hasError('description', 'maxLength')">
+          {{'VALIDATIONS.MAX_LENGTH_500' | translate}}
+        </mat-error>
       </mat-form-field>
-      <mat-form-field class="full-width" appearance="outline" color='accent'>
-        <mat-label>Duration:</mat-label>
-        <input type="text" placeholder="Minutes" matInput formControlName="length">
-      </mat-form-field>
-      <mat-form-field class="full-width" appearance="outline" color='accent'>
-        <mat-label>Date:</mat-label>
-        <input type="text" placeholder="" matInput formControlName="date">
-      </mat-form-field>
-      <mat-form-field class="full-width" appearance="outline" color='accent'>
-        <mat-label>Authors:</mat-label>
-        <input type="text" placeholder="Start typing" matInput formControlName="authors">
-      </mat-form-field>
+      <app-duration-custom-input formControlName="length"></app-duration-custom-input>
+      <app-date-custom-input formControlName="date"></app-date-custom-input>
+      <app-authors [availableAuthors]="courseAuthors" [formControl]="addCourseForm.controls['authors']"></app-authors>
       <div class="action-btn">
-        <button class="reset-course-btn" mat-button (click)="onCancel()"> Cancel </button>
-        <button class="add-course-btn" mat-button (click)="addCourse()"> Save </button>
+        <button class="reset-course-btn" mat-button (click)="onCancel()"> {{'COURSES.ADD_FORM.CANCEL' | translate}} </button>
+        <button class="add-course-btn" mat-button (click)="addCourse()" [disabled]="isFormInvalid"> {{'COURSES.ADD_FORM.SAVE' | translate}} </button>
       </div>
     </form>
   </mat-card>

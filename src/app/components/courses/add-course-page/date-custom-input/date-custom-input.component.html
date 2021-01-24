@@ -1,0 +1,17 @@
+<mat-form-field appearance="outline" class="half-width" color='accent'>
+  <mat-label>{{'COURSES.ADD_FORM.LABEL.DATE' | translate}}</mat-label>
+  <input matInput type="text" placeholder="MM/DD/YYYY"
+    (change)="updateValue($event.target.value)"
+    [(ngModel)]="date"
+    [value]="date"
+    #dateModel="ngModel"
+    appDateValidateDirective
+    required>
+  <mat-icon matSuffix>calendar_today</mat-icon>
+  <mat-error *ngIf="(dateModel.touched || dateModel.dirty) && dateModel.errors?.dateValueInvalid && !dateModel.errors?.required">
+    {{'VALIDATIONS.DATE_FORMAT' | translate}}
+  </mat-error>
+  <mat-error *ngIf="(dateModel.touched || dateModel.dirty) && dateModel.errors?.required">
+    {{'VALIDATIONS.REQUIRED' | translate}}
+  </mat-error>
+</mat-form-field>
