@@ -1,0 +1,53 @@
+{
+  "NOT_FIND": {
+    "TITLE": "404 Not found",
+    "GO_HOME": "return to home"
+  },
+  "HEADER": {
+    "LOG_OUT": "Log off",
+    "LOG_IN": "User login",
+    "LOGO": "video courses"
+  },
+  "COPYRIGHT": "All rights reserved",
+  "COURSES": {
+    "NO_DATA": "No data, feel free to add new course",
+    "LOAD_MORE": "Load more",
+    "SEARCH_LABEL": "Text to search",
+    "SEARCH_PLACEHOLDER": "Type to search",
+    "ADD_COURSE": "Add course",
+    "EDIT": "Edit",
+    "DELETE": "Delete",
+    "COURSES_BC": "Courses",
+    "CONFIRM_DELETE": {
+      "TITLE": "Delete course",
+      "TEXT": "Do you really want to delete this course?",
+      "YES": "Yes",
+      "NO": "No"
+    },
+    "ADD_FORM": {
+      "LABEL": {
+        "NAME": "Title:",
+        "DESCRIPTION": "Description:",
+        "DURATION": "Duration:",
+        "DATE": "Date:",
+        "AUTHOR": "Authors"
+      },
+      "PLACEHOLDER": {
+        "NAME": "Text input",
+        "DESCRIPTION": "Add description",
+        "DURATION": "Minutes",
+        "AUTHOR": "Select authors"
+      },
+      "CANCEL": "Cancel",
+      "SAVE": "Save"
+    }
+  },
+  "VALIDATIONS": {
+    "REQUIRED": "The field is required",
+    "MAX_LENGTH_50": "Max length 50 symbols",
+    "MAX_LENGTH_500": "Max length 500 symbols",
+    "DATE_FORMAT": "Should be date format as MM/DD/YYYY",
+    "NUMBER_FORMAT": "Should be only number",
+    "SELECT_MIN_ONE": "Should select minimum one author"
+  }
+}

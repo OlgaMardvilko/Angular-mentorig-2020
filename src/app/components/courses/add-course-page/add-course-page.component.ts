@@ -6,7 +6,6 @@ import { Observable, Subject } from 'rxjs';
 import { IAuthor, ICourse } from 'src/app/models/course.model';
 import { selectCurrentCourse, addCourse, updateCourse } from '../../../store';
 import { select, Store } from '@ngrx/store';
-import { VALIDATIONS } from '../../../config/validation.config';
 import { CoursesService } from 'src/app/services/courses.service';
 
 @Component({
@@ -22,8 +21,6 @@ export class AddCoursePageComponent implements OnInit, OnDestroy {
   public courseAuthors: IAuthor[];
   private destroy$ = new Subject();
   currentCourses$: Observable<ICourse> = this.store.pipe(select(selectCurrentCourse));
-
-  public VALIDATIONS = VALIDATIONS;
 
   get formAction(): string {
     return this.courseId ? 'Edit course' : 'Add course';

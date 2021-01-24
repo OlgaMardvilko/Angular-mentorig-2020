@@ -8,4 +8,14 @@
       <app-user-logout></app-user-logout>
     </div>
   </div>
+  <div class="lang-selector">
+    <select #langSelect (change)="translate.use(langSelect.value)">
+      <option
+        *ngFor="let lang of translate.getLangs()"
+        [value]="lang"
+        [selected]="lang === translate.currentLang">
+        {{ lang }}
+      </option>
+    </select>
+  </div>
 </mat-toolbar>
